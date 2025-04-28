@@ -6,7 +6,7 @@ import { ProductoService } from '../producto.service';
   selector: 'app-producto-lista',
   imports: [],
   templateUrl: './producto-lista.component.html',
-  styleUrl: './producto-lista.component.css'
+  
 })
 export class ProductoListaComponent {
   productos: Producto[];
