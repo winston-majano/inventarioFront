@@ -24,4 +24,9 @@ export class ProductoService {
   obtenerProdutoPorId(id: number){
     return this.clienteHttp.get<Producto>(`${this.urlBase}/${id}`);
   }
+
+  //metodo de editar producto por id 
+  editarproducto(id: number, producto: Producto){
+    return this.clienteHttp.put(`${this.urlBase}/${id}`, producto);
+  }
 }

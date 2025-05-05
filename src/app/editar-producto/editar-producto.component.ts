@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,7 @@ export class EditarProductoComponent {
 
   private productoServicio = inject(ProductoService);
   private ruta = inject(ActivatedRoute);
+  private enrutador = inject(Router);
 
 //recuperamos el id cada vez que se ejecute este componente 
   ngOnInit(){
@@ -27,6 +28,18 @@ export class EditarProductoComponent {
 
   //editar un producto 
   onSubmit(){
+    this.guardarProducto();
     
+  }
+
+  guardarProducto(){
+    this.productoServicio.editarproducto(this.id, this.producto).subscribe({
+      next: (datosProducto) => this.irProductoLista(),
+      error: (errores)=> console.log(errores)
+    });
+  }
+
+  irProductoLista(){
+    this.enrutador.navigate(['/productos']);
   }
 }
